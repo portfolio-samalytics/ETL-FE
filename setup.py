@@ -46,8 +46,8 @@ setuptools.setup(
     },
     # entry_points={
     #     'console_scripts': [  # This can provide executable scripts
-    #         'run=examplepy:main',
-    # You can execute `run` in bash to run `main()` in src/examplepy/__init__.py
+    #         'run=data-storage:main',
+    # You can execute `run` in bash to run `main()` in src/data-storage/__init__.py
     #     ],
     # },
 )
