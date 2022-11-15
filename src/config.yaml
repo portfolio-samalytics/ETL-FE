@@ -1,2 +1,4 @@
-market: 'eurusd'
-  D1: 'one_day_intervals'
+market:
+  eurusd:
+    D1: 'one_day_intervals'
+    csv_extract: 'eurusd_extract'
