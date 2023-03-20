@@ -1,26 +1,34 @@
 import pandas as pd
 import os
 from pathlib import Path
-import sqlite3
-from sqlite3 import Error
+import yaml
 
 
-def read_csv_from_this_project(filename):
+def find_file_in_project(filename, result=None):
     for p in Path(__file__).parent.parent.parent.rglob('*'):
         if str(p).endswith(filename):
+            result = str(p)
             break
-    return pd.read_csv(p)
+    return result
+
+def get_all_db_files():
+    db_files = []
+    for p in Path(__file__).parent.parent.parent.rglob('*'):
+        if str(p).endswith('.db'):
+            db_files.append(str(p))
+    return db_files
+
+def load_config_file():
+    file = find_file_in_project('config.yaml')
+    return yaml.safe_load(open(str(file)))
+
+def read_csv_from_this_project(filename):
+    file_path = find_file_in_project(filename)
+    return pd.read_csv(file_path)
+
+def read_xlsx_from_this_project(filename):
+    file_path = find_file_in_project(filename)
+    return pd.read_excel(file_path)
 
 
-def build_new_sqlite_file(db_filename):
-    conn = None
-    try:
-        conn = sqlite3.connect(db_filename)
-    except Error as E:
-        raise E
 
-
-
-if __name__ == '__main__':
-    name = 'first_pass'
-    build_new_sqlite_file(os.path.join(os.path.join(str(Path(__file__)).split('src')[0], 'src', 'data-storage', f'{name}.db')))

@@ -1,4 +1,9 @@
-market:
-  eurusd:
-    D1: 'one_day_intervals'
-    csv_extract: 'eurusd_extract'
+currencies:
+  datasets:
+    eurusd:
+      db_file: 'currency_data.db'
+      frequencies:
+        1d:
+          raw_table: 'eurusd_1d'
+          csv_extract_file: 'eurusd_extract_1d.csv'
+          feature_engineering_table: 'eurusd_1d_engineered_features'
